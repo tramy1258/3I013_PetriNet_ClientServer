@@ -8,16 +8,12 @@ import fr.lip6.move.pnml.framework.general.PnmlExport;
 import fr.lip6.move.pnml.framework.utils.exception.InvalidIDException;
 import fr.lip6.move.pnml.framework.utils.exception.VoidRepositoryException;
 import fr.lip6.move.pnml.framework.utils.ModelRepository;
+import java.io.File;
+import java.io.IOException;
 
 public class Generator1 {
 
-	public void generate_file(int nbcli, int nbsv, int dim) {
-		
-		if (nbcli <= 0 || nbsv <= 0) {
-			System.out.println("ERROR: Must have at least one client and one server");
-			System.out.println("Usage (to generate a specific model): java TestGenerator nb_clients nb_serveurs version(1 ou 0)");
-			return;
-		}		
+	public void generate_file(int nbcli, int nbsv, int dim) {	
 		
 		Client1[] cl = new Client1[nbcli];
 		Server1[] sv = new Server1[nbsv];
@@ -55,13 +51,15 @@ public class Generator1 {
 				}
 			}
 			//System.out.println("Everything generated");
-			try {
-				  PnmlExport pex = new PnmlExport();
-				  pex.exportObject(doc,"testmodel/client"+nbcli+"_server"+nbsv+"_v1.pnml");
-				  System.out.println("File client"+nbcli+"_server"+nbsv+"_v1.pnml exported to testmodel directory.");
-			} catch (Exception e) {
-					e.printStackTrace();
+			File dir = new File (System.getProperty("user.dir")+"/testmodel");
+			if (!dir.exists()) {
+				if (!dir.mkdir()) {
+					throw new IOException("Failed to create directory " + dir.getAbsolutePath());
+				}
 			}
+			PnmlExport pex = new PnmlExport();
+			pex.exportObject(doc,"testmodel/client"+nbcli+"_server"+nbsv+"_v1.pnml");
+			System.out.println("File client"+nbcli+"_server"+nbsv+"_v1.pnml exported to testmodel directory.");
 			ModelRepository.getInstance().destroyCurrentWorkspace();
 		} catch (InvalidIDException e) {
 			System.out.println("InvalidIDException caught by while running generator");
@@ -69,6 +67,11 @@ public class Generator1 {
 		} catch (VoidRepositoryException e) {
 			System.out.println("VoidRepositoryException caught by while running generator");
 			e.printStackTrace();	
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
