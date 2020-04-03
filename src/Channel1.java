@@ -23,7 +23,7 @@ public class Channel1 {
 		try {
 
 			sys = new PlaceHLAPI("sys",syspage);			
-			//sys.setInitialMarkingHLAPI(new PTMarkingHLAPI(1L));
+			sys.setInitialMarkingHLAPI(new PTMarkingHLAPI(1L));
 			NodeGraphicsHLAPI pg = new NodeGraphicsHLAPI(sys);
 			PositionHLAPI pos = new PositionHLAPI(d/2,10,pg);
 			DimensionHLAPI dim = new DimensionHLAPI(25,25,pg);

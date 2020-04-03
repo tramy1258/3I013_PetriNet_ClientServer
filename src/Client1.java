@@ -21,7 +21,7 @@ public class Client1 {
 		try {
 
 			init = new PlaceHLAPI("init"+id,clientpage);
-			//init.setInitialMarkingHLAPI(new PTMarkingHLAPI(1L));
+			init.setInitialMarkingHLAPI(new PTMarkingHLAPI(1L));
 			NodeGraphicsHLAPI pg1 = new NodeGraphicsHLAPI(init);
 			PositionHLAPI pos1 = new PositionHLAPI(x,y,pg1);
 			DimensionHLAPI dim1 = new DimensionHLAPI(25,25,pg1);

@@ -27,7 +27,7 @@ public class Server1 {
 		try {
 
 			sv = new PlaceHLAPI("sv"+id,serverpage);
-			//sv.setInitialMarkingHLAPI(new PTMarkingHLAPI(1L));
+			sv.setInitialMarkingHLAPI(new PTMarkingHLAPI(1L));
 			NodeGraphicsHLAPI pg = new NodeGraphicsHLAPI(sv);
 			PositionHLAPI pos = new PositionHLAPI(x,y,pg);
 			DimensionHLAPI dim = new DimensionHLAPI(25,25,pg);
