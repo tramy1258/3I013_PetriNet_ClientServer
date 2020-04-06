@@ -5,7 +5,7 @@ elif [ $1 -eq 0 ] || [ $2 -eq 0 ]
 then
 	echo "Must have at least one client and one server";
 else
-	java -classpath "./bin\
+	java -classpath "./bin/\
 	:./lib/fr.lip6.pnml.framework.3rdpartimports_2.2.14.jar\
 	:./lib/fr.lip6.pnml.framework.ptnet_2.2.14.jar\
 	:./lib/fr.lip6.pnml.framework.utils_2.2.14.jar\
