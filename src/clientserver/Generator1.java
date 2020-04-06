@@ -1,3 +1,4 @@
+package clientserver;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetDocHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PetriNetHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PageHLAPI;
@@ -23,7 +24,7 @@ public class Generator1 {
 		try {
 			ModelRepository.getInstance().createDocumentWorkspace("generator");
 			PetriNetDocHLAPI doc = new PetriNetDocHLAPI();
-			PetriNetHLAPI net = new PetriNetHLAPI("gen", PNTypeHLAPI.COREMODEL, new NameHLAPI("gen"), doc);
+			PetriNetHLAPI net = new PetriNetHLAPI("gen", PNTypeHLAPI.PTNET, new NameHLAPI("gen"), doc);
 			PageHLAPI page = new PageHLAPI("toppage", new NameHLAPI("gen"), null, net);
 			
 			for (int i=0; i<nbcli; i++) {

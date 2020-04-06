@@ -12,6 +12,6 @@ else
 	:./lib/org.eclipse.emf.common_2.17.0.v20190920-0401.jar\
 	:./lib/org.eclipse.emf.ecore_2.20.0.v20190920-0401.jar\
 	:./lib/org.slf4j.api_1.7.30.v20200204-2150.jar\
-	:./lib/logback-classic-1.2.3.jar" TestGenerator $1 $2;
+	:./lib/logback-classic-1.2.3.jar" clientserver.TestGenerator $1 $2;
 fi
 
