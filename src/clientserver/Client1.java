@@ -2,8 +2,10 @@ package clientserver;
 import fr.lip6.move.pnml.ptnet.hlapi.PageHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PlaceHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.PositionHLAPI;
+import fr.lip6.move.pnml.ptnet.CSS2Color;
 import fr.lip6.move.pnml.ptnet.hlapi.AnnotationGraphicsHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.DimensionHLAPI;
+import fr.lip6.move.pnml.ptnet.hlapi.LineHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.NameHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.NodeGraphicsHLAPI;
 import fr.lip6.move.pnml.ptnet.hlapi.OffsetHLAPI;
@@ -27,12 +29,17 @@ public class Client1 {
 			PositionHLAPI pos1 = new PositionHLAPI(x,y,pg1);
 			DimensionHLAPI dim1 = new DimensionHLAPI(25,25,pg1);
 			OffsetHLAPI o1 = new OffsetHLAPI(-12,-30,new AnnotationGraphicsHLAPI(new NameHLAPI(init.getId(),init)));
+			OffsetHLAPI omk = new OffsetHLAPI(-5,-10,new AnnotationGraphicsHLAPI(init.getInitialMarkingHLAPI()));
+			LineHLAPI l1 = new LineHLAPI(pg1);
+			l1.setColorHLAPI(CSS2Color.ORANGE);
 			
 			att  = new PlaceHLAPI("att"+id,clientpage);		
 			NodeGraphicsHLAPI pg2 = new NodeGraphicsHLAPI(att);
 			PositionHLAPI pos2 = new PositionHLAPI(x,y+50,pg2);
 			DimensionHLAPI dim2 = new DimensionHLAPI(25,25,pg2);
 			OffsetHLAPI o2 = new OffsetHLAPI(-12,-30,new AnnotationGraphicsHLAPI(new NameHLAPI(att.getId(),att)));
+			LineHLAPI l2 = new LineHLAPI(pg2);
+			l2.setColorHLAPI(CSS2Color.ORANGE);
 			
 			//System.out.println("Client "+id+" created");
 			
