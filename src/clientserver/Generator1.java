@@ -34,7 +34,7 @@ public class Generator1 {
 			Channel1 sys = new Channel1(page,cl,dim);
 
 			for (int i=0; i<nbsv; i++) {
-				sv[i] = new Server1(i,cl,page,(dim/nbsv)/2+i*dim/nbsv,dim/2);
+				sv[i] = new Server1(i,cl,page,(dim/nbsv)/2+i*dim/nbsv,dim/2+50);
 			}
 			
 			//set up arcs
@@ -43,7 +43,7 @@ public class Generator1 {
 				cli_sys[i][0] = new ArcHLAPI("a0of"+i,cl[i].get_init(),sys.get_send(i) ,page);				
 				cli_sys[i][1] = new ArcHLAPI("a1of"+i,sys.get_send(i) ,cl[i].get_att() ,page);
 				cli_sys[i][2] = new ArcHLAPI("a2of"+i,cl[i].get_att() ,sys.get_rec(i)  ,page);
-				cli_sys[i][3] = new ArcHLAPI("a3of"+i,sys.get_rec(i)  ,cl[i].get_init(),page);
+				cli_sys[i][3] = new ArcHLAPI("a3of"+i,sys.get_rec(i)  ,cl[i].get_cc(),page);
 				//between the channel and a server
 				
 				for (int j=0; j<nbsv; j++) {

@@ -19,15 +19,19 @@ import fr.lip6.move.pnml.framework.utils.exception.VoidRepositoryException;
 public class Server1 {
 	
 	private PlaceHLAPI sv;
+	private PlaceHLAPI done;
+	private TransitionHLAPI reset;
 	private PlaceHLAPI[] sv_cl;
 	private TransitionHLAPI[][] req_rep;
-	private ArcHLAPI[][] arcs;
+	private ArcHLAPI[][] arcs; //arcs of sending and receiving requests, varied by number of clients
+	private ArcHLAPI[] rs; //arcs of reseting, always of size 2
 	
 	public Server1(int id, Client1[] listclient, PageHLAPI serverpage, int x, int y) {		
 		
 		this.sv_cl = new PlaceHLAPI[listclient.length];
 		this.req_rep = new TransitionHLAPI[listclient.length][2];
 		this.arcs = new ArcHLAPI[listclient.length][4];
+		this.rs = new ArcHLAPI[2];
 		try {
 
 			sv = new PlaceHLAPI("sv"+id,serverpage);
@@ -39,6 +43,29 @@ public class Server1 {
 			OffsetHLAPI omk = new OffsetHLAPI(-5,-10,new AnnotationGraphicsHLAPI(sv.getInitialMarkingHLAPI()));
 			LineHLAPI l = new LineHLAPI(pg);
 			l.setColorHLAPI(CSS2Color.MAROON);
+			
+			done = new PlaceHLAPI("done"+id,serverpage);
+			NodeGraphicsHLAPI pgd = new NodeGraphicsHLAPI(done);
+			PositionHLAPI posd = new PositionHLAPI(x,y-50,pgd);
+			DimensionHLAPI dimd = new DimensionHLAPI(25,25,pgd);
+			OffsetHLAPI od = new OffsetHLAPI(-12,-30,new AnnotationGraphicsHLAPI(new NameHLAPI(done.getId(),done)));
+			LineHLAPI ld = new LineHLAPI(pgd);
+			ld.setColorHLAPI(CSS2Color.MAROON);
+			
+			reset = new TransitionHLAPI("reset"+id,serverpage);
+			NodeGraphicsHLAPI pgr = new NodeGraphicsHLAPI(reset);
+			PositionHLAPI posr = new PositionHLAPI(x-40,y-30,pgr);
+			DimensionHLAPI dimr = new DimensionHLAPI(10,25,pgr);
+			OffsetHLAPI or = new OffsetHLAPI(-12,-30,new AnnotationGraphicsHLAPI(new NameHLAPI(reset.getId(),reset)));
+			LineHLAPI lr = new LineHLAPI(pgr);
+			lr.setColorHLAPI(CSS2Color.MAROON);
+			
+			rs[0] = new ArcHLAPI("rs1"+id,done,reset,serverpage);
+			LineHLAPI a0 = new LineHLAPI(new ArcGraphicsHLAPI(rs[0]));
+			a0.setColorHLAPI(CSS2Color.MAROON);
+			rs[1] = new ArcHLAPI("rs2"+id,reset,sv,serverpage);
+			LineHLAPI a1 = new LineHLAPI(new ArcGraphicsHLAPI(rs[1]));
+			a1.setColorHLAPI(CSS2Color.MAROON);
 			
 			for (int i=0; i<listclient.length; i++) {
 				sv_cl[i] = new PlaceHLAPI("sv"+id+"_c"+listclient[i].get_clientid(),serverpage);
@@ -74,7 +101,7 @@ public class Server1 {
 				arcs[i][2] = new ArcHLAPI("sva2of"+id+"_c"+i,sv_cl[i]     ,req_rep[i][1],serverpage);
 				LineHLAPI al3 = new LineHLAPI(new ArcGraphicsHLAPI(arcs[i][2]));
 				al3.setColorHLAPI(CSS2Color.MAROON);
-				arcs[i][3] = new ArcHLAPI("sva3of"+id+"_c"+i,req_rep[i][1],sv           ,serverpage);
+				arcs[i][3] = new ArcHLAPI("sva3of"+id+"_c"+i,req_rep[i][1],done           ,serverpage);
 				LineHLAPI al4 = new LineHLAPI(new ArcGraphicsHLAPI(arcs[i][3]));
 				al4.setColorHLAPI(CSS2Color.MAROON);
 			}
