@@ -21,7 +21,6 @@ public class Channel1 {
 	private PlaceHLAPI sys;
 	private PlaceHLAPI[][] req_rep;
 	private TransitionHLAPI[][] send_rec;
-	private ArcHLAPI[][] sys_arcs;
 	
 	public Channel1(PageHLAPI syspage, Client1[] list, int d) {
 		try {
@@ -38,8 +37,6 @@ public class Channel1 {
 			
 			req_rep = new PlaceHLAPI[list.length][2];
 			send_rec = new TransitionHLAPI[list.length][2];
-			
-			sys_arcs = new ArcHLAPI[list.length][4];
 			
 			for (int i=0; i<list.length; i++) {
 				req_rep[i][0] = new PlaceHLAPI("sys_req"+list[i].get_clientid(),syspage);
@@ -74,17 +71,17 @@ public class Channel1 {
 				LineHLAPI l4 = new LineHLAPI(pg4);
 				l4.setColorHLAPI(CSS2Color.OLIVE);
 				
-				sys_arcs[i][0] = new ArcHLAPI("cna0of"+i,sys,send_rec[i][0],syspage);
-				LineHLAPI al1 = new LineHLAPI(new ArcGraphicsHLAPI(sys_arcs[i][0]));
+				ArcHLAPI a0 = new ArcHLAPI("cna0of"+i,sys,send_rec[i][0],syspage);
+				LineHLAPI al1 = new LineHLAPI(new ArcGraphicsHLAPI(a0));
 				al1.setColorHLAPI(CSS2Color.OLIVE);
-				sys_arcs[i][1] = new ArcHLAPI("cna1of"+i,send_rec[i][0],req_rep[i][0],syspage);
-				LineHLAPI al2 = new LineHLAPI(new ArcGraphicsHLAPI(sys_arcs[i][1]));
+				ArcHLAPI a1 = new ArcHLAPI("cna1of"+i,send_rec[i][0],req_rep[i][0],syspage);
+				LineHLAPI al2 = new LineHLAPI(new ArcGraphicsHLAPI(a1));
 				al2.setColorHLAPI(CSS2Color.OLIVE);
-				sys_arcs[i][2] = new ArcHLAPI("cna2of"+i,req_rep[i][1],send_rec[i][1],syspage);
-				LineHLAPI al3 = new LineHLAPI(new ArcGraphicsHLAPI(sys_arcs[i][2]));
+				ArcHLAPI a2 = new ArcHLAPI("cna2of"+i,req_rep[i][1],send_rec[i][1],syspage);
+				LineHLAPI al3 = new LineHLAPI(new ArcGraphicsHLAPI(a2));
 				al3.setColorHLAPI(CSS2Color.OLIVE);
-				sys_arcs[i][3] = new ArcHLAPI("cna3of"+i,send_rec[i][1],sys,syspage);
-				LineHLAPI al4 = new LineHLAPI(new ArcGraphicsHLAPI(sys_arcs[i][3]));
+				ArcHLAPI a3 = new ArcHLAPI("cna3of"+i,send_rec[i][1],sys,syspage);
+				LineHLAPI al4 = new LineHLAPI(new ArcGraphicsHLAPI(a3));
 				al4.setColorHLAPI(CSS2Color.OLIVE);
 			}
 			

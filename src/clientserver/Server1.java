@@ -23,15 +23,11 @@ public class Server1 {
 	private TransitionHLAPI reset;
 	private PlaceHLAPI[] sv_cl;
 	private TransitionHLAPI[][] req_rep;
-	private ArcHLAPI[][] arcs; //arcs of sending and receiving requests, varied by number of clients
-	private ArcHLAPI[] rs; //arcs of reseting, always of size 2
 	
 	public Server1(int id, Client1[] listclient, PageHLAPI serverpage, int x, int y) {		
 		
 		this.sv_cl = new PlaceHLAPI[listclient.length];
 		this.req_rep = new TransitionHLAPI[listclient.length][2];
-		this.arcs = new ArcHLAPI[listclient.length][4];
-		this.rs = new ArcHLAPI[2];
 		try {
 
 			sv = new PlaceHLAPI("sv"+id,serverpage);
@@ -60,12 +56,12 @@ public class Server1 {
 			LineHLAPI lr = new LineHLAPI(pgr);
 			lr.setColorHLAPI(CSS2Color.MAROON);
 			
-			rs[0] = new ArcHLAPI("rs1"+id,done,reset,serverpage);
-			LineHLAPI a0 = new LineHLAPI(new ArcGraphicsHLAPI(rs[0]));
-			a0.setColorHLAPI(CSS2Color.MAROON);
-			rs[1] = new ArcHLAPI("rs2"+id,reset,sv,serverpage);
-			LineHLAPI a1 = new LineHLAPI(new ArcGraphicsHLAPI(rs[1]));
-			a1.setColorHLAPI(CSS2Color.MAROON);
+			ArcHLAPI rs0 = new ArcHLAPI("rs1"+id,done,reset,serverpage);
+			LineHLAPI ar0 = new LineHLAPI(new ArcGraphicsHLAPI(rs0));
+			ar0.setColorHLAPI(CSS2Color.MAROON);
+			ArcHLAPI rs1 = new ArcHLAPI("rs2"+id,reset,sv,serverpage);
+			LineHLAPI ar1 = new LineHLAPI(new ArcGraphicsHLAPI(rs1));
+			ar1.setColorHLAPI(CSS2Color.MAROON);
 			
 			for (int i=0; i<listclient.length; i++) {
 				sv_cl[i] = new PlaceHLAPI("sv"+id+"_c"+listclient[i].get_clientid(),serverpage);
@@ -92,17 +88,17 @@ public class Server1 {
 				LineHLAPI l3 = new LineHLAPI(pg3);
 				l3.setColorHLAPI(CSS2Color.MAROON);
 				
-				arcs[i][0] = new ArcHLAPI("sva0of"+id+"_c"+i,sv           ,req_rep[i][0],serverpage);
-				LineHLAPI al1 = new LineHLAPI(new ArcGraphicsHLAPI(arcs[i][0]));
+				ArcHLAPI a0 = new ArcHLAPI("sva0of"+id+"_c"+i,sv           ,req_rep[i][0],serverpage);
+				LineHLAPI al1 = new LineHLAPI(new ArcGraphicsHLAPI(a0));
 				al1.setColorHLAPI(CSS2Color.MAROON);
-				arcs[i][1] = new ArcHLAPI("sva1of"+id+"_c"+i,req_rep[i][0],sv_cl[i]     ,serverpage);
-				LineHLAPI al2 = new LineHLAPI(new ArcGraphicsHLAPI(arcs[i][1]));
+				ArcHLAPI a1 = new ArcHLAPI("sva1of"+id+"_c"+i,req_rep[i][0],sv_cl[i]     ,serverpage);
+				LineHLAPI al2 = new LineHLAPI(new ArcGraphicsHLAPI(a1));
 				al2.setColorHLAPI(CSS2Color.MAROON);
-				arcs[i][2] = new ArcHLAPI("sva2of"+id+"_c"+i,sv_cl[i]     ,req_rep[i][1],serverpage);
-				LineHLAPI al3 = new LineHLAPI(new ArcGraphicsHLAPI(arcs[i][2]));
+				ArcHLAPI a2 = new ArcHLAPI("sva2of"+id+"_c"+i,sv_cl[i]     ,req_rep[i][1],serverpage);
+				LineHLAPI al3 = new LineHLAPI(new ArcGraphicsHLAPI(a2));
 				al3.setColorHLAPI(CSS2Color.MAROON);
-				arcs[i][3] = new ArcHLAPI("sva3of"+id+"_c"+i,req_rep[i][1],done           ,serverpage);
-				LineHLAPI al4 = new LineHLAPI(new ArcGraphicsHLAPI(arcs[i][3]));
+				ArcHLAPI a3 = new ArcHLAPI("sva3of"+id+"_c"+i,req_rep[i][1],done           ,serverpage);
+				LineHLAPI al4 = new LineHLAPI(new ArcGraphicsHLAPI(a3));
 				al4.setColorHLAPI(CSS2Color.MAROON);
 			}
 			

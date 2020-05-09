@@ -22,8 +22,6 @@ public class Client1 {
 	private PlaceHLAPI init;
 	private PlaceHLAPI att;
 	private PlaceHLAPI cc;
-	private TransitionHLAPI calcul;
-	private ArcHLAPI[] arcs;
 	
 	public Client1(int id, PageHLAPI clientpage, int x, int y) {
 		this.id = id;
@@ -55,7 +53,7 @@ public class Client1 {
 			LineHLAPI l3 = new LineHLAPI(pg3);
 			l3.setColorHLAPI(CSS2Color.ORANGE);
 			
-			calcul = new TransitionHLAPI("calcul"+id,clientpage);		
+			TransitionHLAPI calcul = new TransitionHLAPI("calcul"+id,clientpage);		
 			NodeGraphicsHLAPI pg4 = new NodeGraphicsHLAPI(calcul);
 			PositionHLAPI pos4 = new PositionHLAPI(x-40,y-30,pg4);
 			DimensionHLAPI dim4 = new DimensionHLAPI(10,25,pg4);
@@ -63,12 +61,11 @@ public class Client1 {
 			LineHLAPI l4 = new LineHLAPI(pg4);
 			l4.setColorHLAPI(CSS2Color.ORANGE);
 			
-			arcs = new ArcHLAPI[2];
-			arcs[0] = new ArcHLAPI("arc1"+id,cc,calcul,clientpage);
-			LineHLAPI al0 = new LineHLAPI(new ArcGraphicsHLAPI(arcs[0]));
+			ArcHLAPI a0 = new ArcHLAPI("arc1"+id,cc,calcul,clientpage);
+			LineHLAPI al0 = new LineHLAPI(new ArcGraphicsHLAPI(a0));
 			al0.setColorHLAPI(CSS2Color.ORANGE);
-			arcs[1] = new ArcHLAPI("arc2"+id,calcul,init,clientpage);
-			LineHLAPI al1 = new LineHLAPI(new ArcGraphicsHLAPI(arcs[1]));
+			ArcHLAPI a1 = new ArcHLAPI("arc2"+id,calcul,init,clientpage);
+			LineHLAPI al1 = new LineHLAPI(new ArcGraphicsHLAPI(a1));
 			al1.setColorHLAPI(CSS2Color.ORANGE);
 			
 			//System.out.println("Client "+id+" created");
