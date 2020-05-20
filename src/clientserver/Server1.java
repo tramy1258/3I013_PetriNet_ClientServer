@@ -74,7 +74,7 @@ public class Server1 {
 				
 				req_rep[i][0] = new TransitionHLAPI("req"+id+"_c"+listclient[i].get_clientid(),serverpage);	
 				NodeGraphicsHLAPI pg2 = new NodeGraphicsHLAPI(req_rep[i][0]);
-				PositionHLAPI pos2 = new PositionHLAPI(x-40-30*i,y+30+40*i,pg2);
+				PositionHLAPI pos2 = new PositionHLAPI(x-40-30*i,y+30+40*i,pg2);				
 				DimensionHLAPI dim2 = new DimensionHLAPI(10,25,pg2);
 				OffsetHLAPI o2 = new OffsetHLAPI(-12,-30,new AnnotationGraphicsHLAPI(new NameHLAPI(req_rep[i][0].getId(),req_rep[i][0])));
 				LineHLAPI l2 = new LineHLAPI(pg2);

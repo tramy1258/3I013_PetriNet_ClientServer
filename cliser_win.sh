@@ -14,4 +14,3 @@ else
 .\lib\org.slf4j.api_1.7.30.v20200204-2150.jar;\
 .\lib\slf4j-jdk14-2.0.0-alpha1.jar" clientserver.TestGenerator $1 $2;
 fi
-#logback-classic-1.2.3.jar

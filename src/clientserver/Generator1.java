@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Generator1 {
 
-	public void generate_file(int nbcli, int nbsv, int dim) {	
+	public void generate_file(int nbcli, int nbsv, int dim1, int dim2) {	
 		
 		Client1[] cl = new Client1[nbcli];
 		Server1[] sv = new Server1[nbsv];
@@ -28,13 +28,13 @@ public class Generator1 {
 			PageHLAPI page = new PageHLAPI("toppage", new NameHLAPI("gen"), null, net);
 			
 			for (int i=0; i<nbcli; i++) {
-				cl[i] = new Client1(i,page,(dim/nbcli)/2+i*dim/nbcli,dim/4);
+				cl[i] = new Client1(i,page,(dim1/nbcli)/2+i*dim1/nbcli,dim2/4);
 			}
 			
-			Channel1 sys = new Channel1(page,cl,dim);
+			Channel1 sys = new Channel1(page,cl,dim1);
 
 			for (int i=0; i<nbsv; i++) {
-				sv[i] = new Server1(i,cl,page,(dim/nbsv)/2+i*dim/nbsv,dim/2+50);
+				sv[i] = new Server1(i,cl,page,(dim1/nbsv)/2+i*dim1/nbsv,dim2/2+50);
 			}
 			
 			//set up arcs

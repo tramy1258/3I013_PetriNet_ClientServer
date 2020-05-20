@@ -16,7 +16,7 @@ public class TestGenerator {
 		
 		System.out.println("Model of "+nbcli+" client(s)-"+nbsv+" server(s) ");
 		Generator1 gen = new Generator1();
-		gen.generate_file(nbcli, nbsv, 500);
+		gen.generate_file(nbcli, nbsv, 750, 500);
 
 	}
 }
